@@ -239,50 +239,50 @@ export default function Register() {
 
     // Form submit handler
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        setIsSubmitted(true);
-        setErrors({});
+    event.preventDefault();
+    setErrors({});
 
-        // Validate form (optional)
-        if (!validateForm()) return;
+    // Validate form
+    if (!validateForm()) return;
 
-        const baseUrl = import.meta.env.VITE_API_URL;
-        const url = `${baseUrl.replace(/\/+$/, '')}/attendees/`;
+    const baseUrl = import.meta.env.VITE_API_URL;
+    const url = `${baseUrl.replace(/\/+$/, '')}/attendees/`;
 
-        // Prepare FormData
-        const fd = new FormData();
-        Object.entries(formData).forEach(([k, v]) => {
-            if (v === undefined || v === null) return;
-            if (Array.isArray(v)) {
+    // Prepare FormData
+    const fd = new FormData();
+    Object.entries(formData).forEach(([k, v]) => {
+        if (v === undefined || v === null) return;
+        if (Array.isArray(v)) {
             v.forEach(item => fd.append(k, item));
-            } else {
+        } else {
             fd.append(k, v);
-            }
+        }
+    });
+
+    if (resumeFile) {
+        fd.append("resume", resumeFile);
+    }
+
+    try {
+        const res = await fetch(url, {
+            method: "POST",
+            body: fd,
         });
 
-        if (resumeFile) {
-            fd.append("resume", resumeFile);
-        }
-
-        try {
-            const res = await fetch(url, {
-            method: "POST",
-            body: fd, // browser sets Content-Type for FormData
-            });
-
-            if (!res.ok) {
+        if (!res.ok) {
             const data = await res.json().catch(() => ({}));
             setErrors(data);
-            } else {
+        } else {
             const data = await res.json();
             console.log("Registration success:", data);
-            // TODO: maybe reset form or redirect
-            }
-        } catch (error) {
-            console.error("Error sending data:", error);
-            setErrors({ submit: "Registration failed. Please try again." });
+            setIsSubmitted(true); // only set this on successful submission
         }
-        };
+    } catch (error) {
+        console.error("Error sending data:", error);
+        setErrors({ submit: "Registration failed. Please try again." });
+    }
+};
+
 
 
     if (isSubmitted) {
