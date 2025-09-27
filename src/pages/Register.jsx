@@ -37,6 +37,54 @@ export default function Register() {
     const [errors, setErrors] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
 
+
+    async function handleSubmit(e) {
+    e.preventDefault();
+    setIsSubmitted(true);
+    setErrors({});
+
+    const baseUrl = import.meta.env.VITE_API_URL;
+    const url = `${baseUrl.replace(/\/+$/, '')}/attendees/`;
+
+    let res;
+
+    if (resumeFile) {
+      // --- multipart case ---
+      const fd = new FormData();
+      Object.entries(formData).forEach(([k, v]) => {
+        if (v === undefined || v === null) return;
+        if (Array.isArray(v)) {
+          v.forEach(item => fd.append(k, item));
+        } else {
+          fd.append(k, v);
+        }
+      });
+      fd.append("resume", resumeFile);
+
+      res = await fetch(url, {
+        method: "POST",
+        body: fd, // browser sets Content-Type
+      });
+    } else {
+      // --- JSON case ---
+      res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+    }
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      setErrors(data);
+    } else {
+      const data = await res.json();
+      console.log("Registration success:", data);
+      // TODO: maybe reset form or redirect
+    }
+  }
+
+
     // Options for dropdowns
     const countries = [
         'Prefer not to answer',
