@@ -38,53 +38,6 @@ export default function Register() {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
 
-    async function handleSubmit(e) {
-    e.preventDefault();
-    setIsSubmitted(true);
-    setErrors({});
-
-    const baseUrl = import.meta.env.VITE_API_URL;
-    const url = `${baseUrl.replace(/\/+$/, '')}/attendees/`;
-
-    let res;
-
-    if (resumeFile) {
-      // --- multipart case ---
-      const fd = new FormData();
-      Object.entries(formData).forEach(([k, v]) => {
-        if (v === undefined || v === null) return;
-        if (Array.isArray(v)) {
-          v.forEach(item => fd.append(k, item));
-        } else {
-          fd.append(k, v);
-        }
-      });
-      fd.append("resume", resumeFile);
-
-      res = await fetch(url, {
-        method: "POST",
-        body: fd, // browser sets Content-Type
-      });
-    } else {
-      // --- JSON case ---
-      res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-    }
-
-    if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
-      setErrors(data);
-    } else {
-      const data = await res.json();
-      console.log("Registration success:", data);
-      // TODO: maybe reset form or redirect
-    }
-  }
-
-
     // Options for dropdowns
     const countries = [
         'Prefer not to answer',
@@ -287,41 +240,50 @@ export default function Register() {
     // Form submit handler
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
-        if (!validateForm()) {
-            return;
-        }
+        setIsSubmitted(true);
+        setErrors({});
 
-        // Prepare FormData for sending to the API
-        const apiFormData = new FormData();
-        Object.keys(formData).forEach(key => {
-            if (Array.isArray(formData[key])) {
-                apiFormData.append(key, JSON.stringify(formData[key]));
+        // Validate form (optional)
+        if (!validateForm()) return;
+
+        const baseUrl = import.meta.env.VITE_API_URL;
+        const url = `${baseUrl.replace(/\/+$/, '')}/attendees/`;
+
+        // Prepare FormData
+        const fd = new FormData();
+        Object.entries(formData).forEach(([k, v]) => {
+            if (v === undefined || v === null) return;
+            if (Array.isArray(v)) {
+            v.forEach(item => fd.append(k, item));
             } else {
-                apiFormData.append(key, formData[key]);
+            fd.append(k, v);
             }
         });
-        if (resumeFile) apiFormData.append('resume', resumeFile);
+
+        if (resumeFile) {
+            fd.append("resume", resumeFile);
+        }
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/attendees/`, {
-                method: 'POST',
-                body: apiFormData,
+            const res = await fetch(url, {
+            method: "POST",
+            body: fd, // browser sets Content-Type for FormData
             });
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Attendee created:', data);
-                setIsSubmitted(true);
+            if (!res.ok) {
+            const data = await res.json().catch(() => ({}));
+            setErrors(data);
             } else {
-                console.error('Error:', response.statusText);
-                setErrors({ submit: 'Registration failed. Please try again.' });
+            const data = await res.json();
+            console.log("Registration success:", data);
+            // TODO: maybe reset form or redirect
             }
         } catch (error) {
-            console.error('Error sending data:', error);
-            setErrors({ submit: 'Registration failed. Please try again.' });
+            console.error("Error sending data:", error);
+            setErrors({ submit: "Registration failed. Please try again." });
         }
-    };
+        };
+
 
     if (isSubmitted) {
         return (
