@@ -246,9 +246,11 @@ export default function Register() {
     if (!validateForm()) return;
 
     // Build URL safely — local dev vs Vercel proxy
-    const url = import.meta.env.VITE_API_URL
-        ? `${import.meta.env.VITE_API_URL.replace(/\/+$/, '')}/attendees/`
-        : '/api/attendees/';
+    // const url = import.meta.env.VITE_API_URL
+    //     ? `${import.meta.env.VITE_API_URL.replace(/\/+$/, '')}/attendees/`
+    //     : '/api/attendees/';
+
+    const url = '/api/attendees/';
 
 
     // Prepare FormData
