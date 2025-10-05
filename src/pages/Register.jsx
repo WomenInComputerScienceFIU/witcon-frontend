@@ -245,8 +245,12 @@ export default function Register() {
     // Validate form
     if (!validateForm()) return;
 
-    const baseUrl = import.meta.env.VITE_API_URL;
-    const url = `${baseUrl.replace(/\/+$/, '')}/attendees/`;
+    // Build URL safely — works locally and on Vercel
+    const baseUrl = import.meta.env.VITE_API_URL ?? '';
+    const url = baseUrl
+        ? `${baseUrl.replace(/\/+$/, '')}/attendees/`
+        : '/api/attendees/';
+
 
     // Prepare FormData
     const fd = new FormData();
