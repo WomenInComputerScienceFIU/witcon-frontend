@@ -252,11 +252,6 @@ export default function Register() {
 
     const url = '/api/attendees/';
 
-    const res = await fetch(url, {
-        method: 'POST',
-        body: fd
-    });
-
 
     // Prepare FormData
     const fd = new FormData();
