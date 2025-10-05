@@ -245,10 +245,9 @@ export default function Register() {
     // Validate form
     if (!validateForm()) return;
 
-    // Build URL safely — works locally and on Vercel
-    const baseUrl = import.meta.env.VITE_API_URL ?? '';
-    const url = baseUrl
-        ? `${baseUrl.replace(/\/+$/, '')}/attendees/`
+    // Build URL safely — local dev vs Vercel proxy
+    const url = import.meta.env.VITE_API_URL
+        ? `${import.meta.env.VITE_API_URL.replace(/\/+$/, '')}/attendees/`
         : '/api/attendees/';
 
 
