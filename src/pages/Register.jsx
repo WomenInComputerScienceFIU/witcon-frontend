@@ -252,7 +252,6 @@ export default function Register() {
 
     const url = '/api/attendees/';
 
-
     // Prepare FormData
     const fd = new FormData();
     Object.entries(formData).forEach(([k, v]) => {
