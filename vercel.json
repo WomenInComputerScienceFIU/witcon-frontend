@@ -1,11 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/proxy/:path*",
+      "source": "/backend/:path*",
       "destination": "http://52.15.225.107/api/:path*"
     }
   ]
 }
+
 
 
 
