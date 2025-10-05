@@ -1,10 +1,11 @@
 {
   "rewrites": [
     {
-      "source": "/test-rewrite",
-      "destination": "http://52.15.225.107/api/attendees/"
+      "source": "/api/:path*",
+      "destination": "http://52.15.225.107/api/:path*"
     }
   ]
 }
+
 
 
