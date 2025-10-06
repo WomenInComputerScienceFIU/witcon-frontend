@@ -250,7 +250,7 @@ export default function Register() {
     //     ? `${import.meta.env.VITE_API_URL.replace(/\/+$/, '')}/attendees/`
     //     : '/api/attendees/';
 
-    const url = '/api/attendees/';
+    const url = '/backend-api/attendees/';
 
     // Prepare FormData
     const fd = new FormData();
