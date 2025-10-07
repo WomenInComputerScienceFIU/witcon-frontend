@@ -3,9 +3,14 @@
     {
       "source": "/backend-api/:path*",
       "destination": "http://52.15.225.107/backend-api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
+
 
 
 
