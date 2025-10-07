@@ -5,11 +5,12 @@
       "destination": "http://52.15.225.107/backend-api/:path*"
     },
     {
-      "source": "/((?!backend-api).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
 }
+
 
 
 
