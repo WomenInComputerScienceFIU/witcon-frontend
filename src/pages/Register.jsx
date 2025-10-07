@@ -250,7 +250,9 @@ export default function Register() {
     //     ? `${import.meta.env.VITE_API_URL.replace(/\/+$/, '')}/attendees/`
     //     : '/api/attendees/';
 
-    const url = '/backend-api/attendees/';
+    // const url = '/backend-api/attendees/';
+
+    const url = "https://witcon.duckdns.org/backend-api/attendees/";
 
     // Prepare FormData
     const fd = new FormData();
