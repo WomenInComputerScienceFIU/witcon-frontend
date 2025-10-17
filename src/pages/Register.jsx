@@ -5,160 +5,160 @@ export default function Register() {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
-        // email: '',
-        // confirmEmail: '',
-        // password: '',
-        // dateOfBirth: '',
-        // country: '',
-        // state: '',
-        // genderIdentity: [],
-        // genderOther: '',
-        // raceEthnicity: '',
-        // raceOther: '',
-        // levelOfStudy: '',
-        // yearLevel: '',
-        // studyOther: '',
-        // fieldOfStudy: '',
-        // fieldOther: '',
-        // school: '',
-        // schoolOther: '',
-        // pantherID: '',
-        // linkedin: '',
-        // github: '',
-        // website: '',
-        // discord: '',
-        // foodAllergies: [],
-        // shirtSize: '',
-        // codeOfConduct: false,
-        // photographyConsent: false
+        email: '',
+        confirmEmail: '',
+        password: '',
+        dateOfBirth: '',
+        country: '',
+        state: '',
+        genderIdentity: [],
+        genderOther: '',
+        raceEthnicity: '',
+        raceOther: '',
+        levelOfStudy: '',
+        yearLevel: '',
+        studyOther: '',
+        fieldOfStudy: '',
+        fieldOther: '',
+        school: '',
+        schoolOther: '',
+        pantherID: '',
+        linkedin: '',
+        github: '',
+        website: '',
+        discord: '',
+        foodAllergies: [],
+        shirtSize: '',
+        codeOfConduct: false,
+        photographyConsent: false
     });
 
-    // const [resumeFile, setResumeFile] = useState(null);
-    // const [errors, setErrors] = useState({});
-    // const [isSubmitted, setIsSubmitted] = useState(false);
+    const [resumeFile, setResumeFile] = useState(null);
+    const [errors, setErrors] = useState({});
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
 
-    // // Options for dropdowns
-    // const countries = [
-    //     'Prefer not to answer',
-    //     'United States',
-    //     'Canada',
-    //     'Mexico',
-    //     'Brazil',
-    //     'United Kingdom',
-    //     'Germany',
-    //     'France',
-    //     'Spain',
-    //     'Italy',
-    //     'China',
-    //     'Japan',
-    //     'India',
-    //     'Australia',
-    //     'Other'
-    // ];
+    // Options for dropdowns
+    const countries = [
+        'Prefer not to answer',
+        'United States',
+        'Canada',
+        'Mexico',
+        'Brazil',
+        'United Kingdom',
+        'Germany',
+        'France',
+        'Spain',
+        'Italy',
+        'China',
+        'Japan',
+        'India',
+        'Australia',
+        'Other'
+    ];
 
-    // const usStates = [
-    //     'Prefer not to answer',
-    //     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
-    //     'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
-    //     'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan',
-    //     'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-    //     'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
-    //     'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
-    //     'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
-    //     'Wisconsin', 'Wyoming'
-    // ];
+    const usStates = [
+        'Prefer not to answer',
+        'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
+        'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
+        'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan',
+        'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+        'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
+        'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
+        'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
+        'Wisconsin', 'Wyoming'
+    ];
 
-    // const genderOptions = [
-    //     'Woman',
-    //     'Man',
-    //     'Non-binary or Transgender',
-    //     'Other',
-    //     'Prefer not to answer'
-    // ];
+    const genderOptions = [
+        'Woman',
+        'Man',
+        'Non-binary or Transgender',
+        'Other',
+        'Prefer not to answer'
+    ];
 
-    // const raceOptions = [
-    //     'White',
-    //     'Hispanic or Latine',
-    //     'Black or African American',
-    //     'Asian',
-    //     'Native American or Alaskan Native',
-    //     'Native Hawaiian or Other Pacific Islander',
-    //     'Middle Eastern',
-    //     'Other',
-    //     'Prefer not to answer'
-    // ];
+    const raceOptions = [
+        'White',
+        'Hispanic or Latine',
+        'Black or African American',
+        'Asian',
+        'Native American or Alaskan Native',
+        'Native Hawaiian or Other Pacific Islander',
+        'Middle Eastern',
+        'Other',
+        'Prefer not to answer'
+    ];
 
-    // const studyLevels = [
-    //     'Undergraduate',
-    //     'Graduate',
-    //     'Post-Doctorate',
-    //     'Other',
-    //     'I\'m not a student',
-    //     'Prefer not to answer'
-    // ];
+    const studyLevels = [
+        'Undergraduate',
+        'Graduate',
+        'Post-Doctorate',
+        'Other',
+        'I\'m not a student',
+        'Prefer not to answer'
+    ];
 
-    // const yearLevels = [
-    //     'Freshman',
-    //     'Sophomore',
-    //     'Junior',
-    //     'Senior',
-    //     'Prefer not to answer'
-    // ];
+    const yearLevels = [
+        'Freshman',
+        'Sophomore',
+        'Junior',
+        'Senior',
+        'Prefer not to answer'
+    ];
 
-    // const fieldsOfStudy = [
-    //     'Computer Science',
-    //     'Information Technology',
-    //     'Software Engineering',
-    //     'Computer Engineering',
-    //     'Data Science',
-    //     'Cybersecurity',
-    //     'Information Systems',
-    //     'Web Development',
-    //     'Game Development',
-    //     'Business',
-    //     'Engineering',
-    //     'Mathematics',
-    //     'Biology',
-    //     'Chemistry',
-    //     'Physics',
-    //     'Psychology',
-    //     'Other'
-    // ];
+    const fieldsOfStudy = [
+        'Computer Science',
+        'Information Technology',
+        'Software Engineering',
+        'Computer Engineering',
+        'Data Science',
+        'Cybersecurity',
+        'Information Systems',
+        'Web Development',
+        'Game Development',
+        'Business',
+        'Engineering',
+        'Mathematics',
+        'Biology',
+        'Chemistry',
+        'Physics',
+        'Psychology',
+        'Other'
+    ];
 
-    // const schools = [
-    //     'Florida International University',
-    //     'University of Florida',
-    //     'Florida State University',
-    //     'University of Central Florida',
-    //     'Florida Institute of Technology',
-    //     'Nova Southeastern University',
-    //     'Florida Atlantic University',
-    //     'University of South Florida',
-    //     'Florida A&M University',
-    //     'Florida Polytechnic University',
-    //     'Harvard University',
-    //     'MIT',
-    //     'Stanford University',
-    //     'UC Berkeley',
-    //     'Georgia Tech',
-    //     'Carnegie Mellon',
-    //     'Other'
-    // ];
+    const schools = [
+        'Florida International University',
+        'University of Florida',
+        'Florida State University',
+        'University of Central Florida',
+        'Florida Institute of Technology',
+        'Nova Southeastern University',
+        'Florida Atlantic University',
+        'University of South Florida',
+        'Florida A&M University',
+        'Florida Polytechnic University',
+        'Harvard University',
+        'MIT',
+        'Stanford University',
+        'UC Berkeley',
+        'Georgia Tech',
+        'Carnegie Mellon',
+        'Other'
+    ];
 
-    // const allergyOptions = [
-    //     'Milk',
-    //     'Eggs',
-    //     'Fish',
-    //     'Crustacean shellfish',
-    //     'Peanuts',
-    //     'Tree nuts',
-    //     'Wheat',
-    //     'Soybeans',
-    //     'Sesame'
-    // ];
+    const allergyOptions = [
+        'Milk',
+        'Eggs',
+        'Fish',
+        'Crustacean shellfish',
+        'Peanuts',
+        'Tree nuts',
+        'Wheat',
+        'Soybeans',
+        'Sesame'
+    ];
 
-    // const shirtSizes = ['S', 'M', 'L', 'XL'];
+    const shirtSizes = ['S', 'M', 'L', 'XL'];
 
     // Handle input changes
     const handleInputChange = (field, value) => {
@@ -168,40 +168,40 @@ export default function Register() {
         }));
     };
 
-    // // Handle multiselect changes
-    // const handleMultiSelectChange = (field, value) => {
-    //     setFormData(prev => ({
-    //         ...prev,
-    //         [field]: prev[field].includes(value) 
-    //             ? prev[field].filter(item => item !== value)
-    //             : [...prev[field], value]
-    //     }));
-    // };
+    // Handle multiselect changes
+    const handleMultiSelectChange = (field, value) => {
+        setFormData(prev => ({
+            ...prev,
+            [field]: prev[field].includes(value) 
+                ? prev[field].filter(item => item !== value)
+                : [...prev[field], value]
+        }));
+    };
 
-    // // Handle file change
-    // const handleFileChange = (e) => {
-    //     setResumeFile(e.target.files[0]);
-    // };
+    // Handle file change
+    const handleFileChange = (e) => {
+        setResumeFile(e.target.files[0]);
+    };
 
-    // // Validate age requirement
-    // const validateAge = (dateOfBirth) => {
-    //     const birthDate = new Date(dateOfBirth);
-    //     const conferenceDate = new Date('2026-03-27');
-    //     const age = conferenceDate.getFullYear() - birthDate.getFullYear();
-    //     const monthDiff = conferenceDate.getMonth() - birthDate.getMonth();
+    // Validate age requirement
+    const validateAge = (dateOfBirth) => {
+        const birthDate = new Date(dateOfBirth);
+        const conferenceDate = new Date('2026-03-27');
+        const age = conferenceDate.getFullYear() - birthDate.getFullYear();
+        const monthDiff = conferenceDate.getMonth() - birthDate.getMonth();
         
-    //     if (monthDiff < 0 || (monthDiff === 0 && conferenceDate.getDate() < birthDate.getDate())) {
-    //         return age - 1 >= 18;
-    //     }
-    //     return age >= 18;
-    // };
+        if (monthDiff < 0 || (monthDiff === 0 && conferenceDate.getDate() < birthDate.getDate())) {
+            return age - 1 >= 18;
+        }
+        return age >= 18;
+    };
 
-    // // Validate Panther ID
-    // const validatePantherID = (id) => {
-    //     if (id.length !== 7 || !/^\d{7}$/.test(id)) return false;
-    //     const invalidIDs = ['0000000', '1111111', '2222222', '3333333', '4444444', '5555555', '6666666', '7777777', '8888888', '9999999', '1234567'];
-    //     return !invalidIDs.includes(id);
-    // };
+    // Validate Panther ID
+    const validatePantherID = (id) => {
+        if (id.length !== 7 || !/^\d{7}$/.test(id)) return false;
+        const invalidIDs = ['0000000', '1111111', '2222222', '3333333', '4444444', '5555555', '6666666', '7777777', '8888888', '9999999', '1234567'];
+        return !invalidIDs.includes(id);
+    };
 
     // Form validation
     const validateForm = () => {
@@ -210,28 +210,28 @@ export default function Register() {
         // Required fields
         if (!formData.firstName) newErrors.firstName = 'Required';
         if (!formData.lastName) newErrors.lastName = 'Required';
-        // if (!formData.email) newErrors.email = 'Required';
-        // if (!formData.confirmEmail) newErrors.confirmEmail = 'Required';
-        // if (formData.email !== formData.confirmEmail) newErrors.confirmEmail = 'Emails do not match';
-        // if (!formData.password) newErrors.password = 'Required';
-        // if (!formData.dateOfBirth) newErrors.dateOfBirth = 'Required';
-        // else if (!validateAge(formData.dateOfBirth)) newErrors.dateOfBirth = 'Must be 18 or older by March 27, 2026';
-        // if (!formData.country) newErrors.country = 'Required';
-        // if (formData.country === 'United States' && !formData.state) newErrors.state = 'Required';
-        // if (formData.genderIdentity.length === 0) newErrors.genderIdentity = 'Required';
-        // if (!formData.raceEthnicity) newErrors.raceEthnicity = 'Required';
-        // if (!formData.levelOfStudy) newErrors.levelOfStudy = 'Required';
-        // if (formData.levelOfStudy === 'Undergraduate' && !formData.yearLevel) newErrors.yearLevel = 'Required';
-        // if (!formData.fieldOfStudy) newErrors.fieldOfStudy = 'Required';
-        // if (!formData.school) newErrors.school = 'Required';
-        // if (formData.school === 'Florida International University' && !formData.pantherID) newErrors.pantherID = 'Required';
-        // if (formData.school === 'Florida International University' && formData.pantherID && !validatePantherID(formData.pantherID)) {
-        //     newErrors.pantherID = 'Invalid Panther ID';
-        // }
-        // if (!resumeFile) newErrors.resume = 'Required';
-        // if (!formData.shirtSize) newErrors.shirtSize = 'Required';
-        // if (!formData.codeOfConduct) newErrors.codeOfConduct = 'Required';
-        // if (!formData.photographyConsent) newErrors.photographyConsent = 'Required';
+        if (!formData.email) newErrors.email = 'Required';
+        if (!formData.confirmEmail) newErrors.confirmEmail = 'Required';
+        if (formData.email !== formData.confirmEmail) newErrors.confirmEmail = 'Emails do not match';
+        if (!formData.password) newErrors.password = 'Required';
+        if (!formData.dateOfBirth) newErrors.dateOfBirth = 'Required';
+        else if (!validateAge(formData.dateOfBirth)) newErrors.dateOfBirth = 'Must be 18 or older by March 27, 2026';
+        if (!formData.country) newErrors.country = 'Required';
+        if (formData.country === 'United States' && !formData.state) newErrors.state = 'Required';
+        if (formData.genderIdentity.length === 0) newErrors.genderIdentity = 'Required';
+        if (!formData.raceEthnicity) newErrors.raceEthnicity = 'Required';
+        if (!formData.levelOfStudy) newErrors.levelOfStudy = 'Required';
+        if (formData.levelOfStudy === 'Undergraduate' && !formData.yearLevel) newErrors.yearLevel = 'Required';
+        if (!formData.fieldOfStudy) newErrors.fieldOfStudy = 'Required';
+        if (!formData.school) newErrors.school = 'Required';
+        if (formData.school === 'Florida International University' && !formData.pantherID) newErrors.pantherID = 'Required';
+        if (formData.school === 'Florida International University' && formData.pantherID && !validatePantherID(formData.pantherID)) {
+            newErrors.pantherID = 'Invalid Panther ID';
+        }
+        if (!resumeFile) newErrors.resume = 'Required';
+        if (!formData.shirtSize) newErrors.shirtSize = 'Required';
+        if (!formData.codeOfConduct) newErrors.codeOfConduct = 'Required';
+        if (!formData.photographyConsent) newErrors.photographyConsent = 'Required';
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
