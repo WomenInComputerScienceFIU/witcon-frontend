@@ -98,13 +98,13 @@ export default function Register() {
         'Prefer not to answer'
     ];
 
-    const yearLevels = [
-        'Freshman',
-        'Sophomore',
-        'Junior',
-        'Senior',
-        'Prefer not to answer'
-    ];
+    // const yearLevels = [
+    //     'Freshman',
+    //     'Sophomore',
+    //     'Junior',
+    //     'Senior',
+    //     'Prefer not to answer'
+    // ];
 
     const fieldsOfStudy = [
         'Computer Science',
