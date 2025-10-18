@@ -11,7 +11,7 @@ export default function Register() {
         dateOfBirth: '',
         country: '',
         state: '',
-        genderIdentity: [],
+        genderIdentity: '',
         genderOther: '',
         raceEthnicity: '',
         raceOther: '',
@@ -27,7 +27,7 @@ export default function Register() {
         github: '',
         website: '',
         discord: '',
-        foodAllergies: [],
+        foodAllergies: '',
         shirtSize: '',
         codeOfConduct: false,
         photographyConsent: false
@@ -263,22 +263,14 @@ Object.entries(formData).forEach(([key, value]) => {
     if (value === undefined || value === null) return;
 
     if (Array.isArray(value)) {
-        // If empty, skip
-        if (value.length === 0) return;
-
-        // For genderIdentity (single-select), just send the first item as string
-        if (key === 'genderIdentity') {
-            fd.append(key, value[0]);
-        } else {
-            // For multi-select like foodAllergies, append each item
-            value.forEach(item => {
-                if (item) fd.append(key, item);
-            });
-        }
+        value.forEach(item => {
+            if (item) fd.append(key, item); // only append non-empty strings
+        });
     } else {
         fd.append(key, value);
     }
 });
+
 
 // Add resume file if present
 if (resumeFile) {
@@ -464,7 +456,7 @@ if (resumeFile) {
                         </div>
                     )}
 
-<div>
+{/* <div>
     <label htmlFor="genderIdentity" className="block font-medium">Gender Identity *</label>
     <select
         id="genderIdentity"
@@ -490,7 +482,7 @@ if (resumeFile) {
     )}
 
     {errors.genderIdentity && <div className="text-red-600 text-sm">{errors.genderIdentity}</div>}
-</div>
+</div> */}
 
 
                     <div>
