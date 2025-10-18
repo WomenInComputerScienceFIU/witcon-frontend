@@ -465,7 +465,7 @@ if (resumeFile) {
                         </div>
                     )}
 
-{/* <div>
+{ <div>
     <label htmlFor="genderIdentity" className="block font-medium">Gender Identity *</label>
     <select
         id="genderIdentity"
@@ -491,7 +491,7 @@ if (resumeFile) {
     )}
 
     {errors.genderIdentity && <div className="text-red-600 text-sm">{errors.genderIdentity}</div>}
-</div> */}
+</div>}
 
 
                     <div>
