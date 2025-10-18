@@ -218,7 +218,9 @@ export default function Register() {
         else if (!validateAge(formData.dateOfBirth)) newErrors.dateOfBirth = 'Must be 18 or older by March 27, 2026';
         if (!formData.country) newErrors.country = 'Required';
         if (formData.country === 'United States' && !formData.state) newErrors.state = 'Required';
-        if (formData.genderIdentity.length === 0) newErrors.genderIdentity = 'Required';
+        if (formData.genderIdentity.length === 0 || !formData.genderIdentity[0]) {
+            newErrors.genderIdentity = 'Required';
+        }
         if (!formData.raceEthnicity) newErrors.raceEthnicity = 'Required';
         if (!formData.levelOfStudy) newErrors.levelOfStudy = 'Required';
         // if (formData.levelOfStudy === 'Undergraduate' && !formData.yearLevel) newErrors.yearLevel = 'Required';
@@ -449,32 +451,34 @@ export default function Register() {
                         </div>
                     )}
 
-                    <div>
-                        <label className="block font-medium">Gender Identity * (Select all that apply)</label>
-                        <div className="space-y-2">
-                            {genderOptions.map(option => (
-                                <label key={option} className="flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        checked={formData.genderIdentity.includes(option)}
-                                        onChange={() => handleMultiSelectChange('genderIdentity', option)}
-                                        className="mr-2"
-                                    />
-                                    {option}
-                                </label>
-                            ))}
-                        </div>
-                        {formData.genderIdentity.includes('Other') && (
-                            <input
-                                type="text"
-                                placeholder="Please specify"
-                                value={formData.genderOther}
-                                onChange={(e) => handleInputChange('genderOther', e.target.value)}
-                                className="w-full border rounded px-3 py-2 mt-2"
-                            />
-                        )}
-                        {errors.genderIdentity && <div className="text-red-600 text-sm">{errors.genderIdentity}</div>}
-                    </div>
+<div>
+    <label htmlFor="genderIdentity" className="block font-medium">Gender Identity *</label>
+    <select
+        id="genderIdentity"
+        value={formData.genderIdentity[0] || ''} // store single selection in array
+        onChange={(e) => handleInputChange('genderIdentity', [e.target.value])}
+        className="w-full border rounded px-3 py-2"
+        required
+    >
+        <option value="">Select gender identity</option>
+        {genderOptions.map(option => (
+            <option key={option} value={option}>{option}</option>
+        ))}
+    </select>
+
+    {formData.genderIdentity.includes('Other') && (
+        <input
+            type="text"
+            placeholder="Please specify"
+            value={formData.genderOther}
+            onChange={(e) => handleInputChange('genderOther', e.target.value)}
+            className="w-full border rounded px-3 py-2 mt-2"
+        />
+    )}
+
+    {errors.genderIdentity && <div className="text-red-600 text-sm">{errors.genderIdentity}</div>}
+</div>
+
 
                     <div>
                         <label htmlFor="raceEthnicity" className="block font-medium">Race or Ethnicity *</label>
@@ -694,22 +698,24 @@ export default function Register() {
                         {errors.resume && <div className="text-red-600 text-sm">{errors.resume}</div>}
                     </div>
 
-                    <div>
-                        <label className="block font-medium">Food Allergies/Restrictions (Optional)</label>
-                        <div className="space-y-2">
-                            {allergyOptions.map(allergy => (
-                                <label key={allergy} className="flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        checked={formData.foodAllergies.includes(allergy)}
-                                        onChange={() => handleMultiSelectChange('foodAllergies', allergy)}
-                                        className="mr-2"
-                                    />
-                                    {allergy}
-                                </label>
-                            ))}
-                        </div>
-                    </div>
+<div>
+    <label htmlFor="foodAllergies" className="block font-medium">Food Allergies/Restrictions (Optional)</label>
+    <select
+        id="foodAllergies"
+        multiple
+        value={formData.foodAllergies}
+        onChange={(e) => {
+            const options = Array.from(e.target.selectedOptions, option => option.value);
+            handleInputChange('foodAllergies', options);
+        }}
+        className="w-full border rounded px-3 py-2"
+    >
+        {allergyOptions.map(allergy => (
+            <option key={allergy} value={allergy}>{allergy}</option>
+        ))}
+    </select>
+</div>
+
 
                     <div>
                         <label htmlFor="shirtSize" className="block font-medium">Shirt Size *</label>
