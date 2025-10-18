@@ -277,7 +277,7 @@ export default function Register() {
 
         if (!res.ok) {
             const data = await res.json().catch(() => ({}));
-            onsole.error("Backend error response:", data);
+            console.error("Backend error response:", data);
             setErrors(data);
         } else {
 
