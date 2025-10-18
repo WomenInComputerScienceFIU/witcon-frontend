@@ -259,13 +259,15 @@ export default function Register() {
     const fd = new FormData(); 
 
     // Prepare FormData
-    Object.entries(formData).forEach(([k, v]) => {
-    if (v === undefined || v === null) return;
-    if (Array.isArray(v)) {
-        // Convert array to JSON string before sending
-        v.forEach(item => fd.append(k, item));
+    Object.entries(formData).forEach(([key, value]) => {
+    if (value === undefined || value === null) return;
+
+    if (Array.isArray(value)) {
+        value.forEach(item => {
+            if (item) fd.append(key, item); // only append non-empty strings
+        });
     } else {
-        fd.append(k, v);
+        fd.append(key, value);
     }
 });
 
