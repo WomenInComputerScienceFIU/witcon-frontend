@@ -255,15 +255,16 @@ export default function Register() {
     const url = "https://witcon.duckdns.org/backend-api/attendees/";
 
     // Prepare FormData
-    const fd = new FormData();
     Object.entries(formData).forEach(([k, v]) => {
-        if (v === undefined || v === null) return;
-        if (Array.isArray(v)) {
-            v.forEach(item => fd.append(k, item));
-        } else {
-            fd.append(k, v);
-        }
-    });
+    if (v === undefined || v === null) return;
+    if (Array.isArray(v)) {
+        // Convert array to JSON string before sending
+        fd.append(k, JSON.stringify(v));
+    } else {
+        fd.append(k, v);
+    }
+});
+
 
     if (resumeFile) {
         fd.append("resume", resumeFile);
