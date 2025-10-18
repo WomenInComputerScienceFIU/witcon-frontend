@@ -263,19 +263,28 @@ Object.entries(formData).forEach(([key, value]) => {
     if (value === undefined || value === null) return;
 
     if (Array.isArray(value)) {
-        value.forEach(item => {
-            if (item) fd.append(key, item); // only append non-empty strings
-        });
+        // If empty, skip
+        if (value.length === 0) return;
+
+        // For genderIdentity (single-select), just send the first item as string
+        if (key === 'genderIdentity') {
+            fd.append(key, value[0]);
+        } else {
+            // For multi-select like foodAllergies, append each item
+            value.forEach(item => {
+                if (item) fd.append(key, item);
+            });
+        }
     } else {
         fd.append(key, value);
     }
 });
 
-
 // Add resume file if present
 if (resumeFile) {
     fd.append('resume', resumeFile);
 }
+
 
 
     try {
