@@ -11,8 +11,8 @@ export default function Register() {
         dateOfBirth: '',
         country: '',
         state: '',
-        genderIdentity: '',
-        genderOther: '',
+        // genderIdentity: '',
+        // genderOther: '',
         raceEthnicity: '',
         raceOther: '',
         levelOfStudy: '',
@@ -27,7 +27,7 @@ export default function Register() {
         github: '',
         website: '',
         discord: '',
-        foodAllergies: '',
+        // foodAllergies: '',
         shirtSize: '',
         codeOfConduct: false,
         photographyConsent: false
@@ -218,9 +218,9 @@ export default function Register() {
         else if (!validateAge(formData.dateOfBirth)) newErrors.dateOfBirth = 'Must be 18 or older by March 27, 2026';
         if (!formData.country) newErrors.country = 'Required';
         if (formData.country === 'United States' && !formData.state) newErrors.state = 'Required';
-        if (formData.genderIdentity.length === 0 || !formData.genderIdentity[0]) {
-            newErrors.genderIdentity = 'Required';
-        }
+        // if (formData.genderIdentity.length === 0 || !formData.genderIdentity[0]) {
+        //     newErrors.genderIdentity = 'Required';
+        // }
         if (!formData.raceEthnicity) newErrors.raceEthnicity = 'Required';
         if (!formData.levelOfStudy) newErrors.levelOfStudy = 'Required';
         // if (formData.levelOfStudy === 'Undergraduate' && !formData.yearLevel) newErrors.yearLevel = 'Required';
@@ -259,26 +259,16 @@ export default function Register() {
     const fd = new FormData();
 
 // Iterate over formData keys
-Object.entries(formData).forEach(([key, value]) => {
-    if (value === undefined || value === null) return;
 
-    if (Array.isArray(value)) {
-        // If empty, skip
-        if (value.length === 0) return;
-
-        // For genderIdentity (single-select), just send the first item as string
-        if (key === 'genderIdentity') {
-            fd.append(key, value[0]);
-        } else {
-            // For multi-select like foodAllergies, append each item
-            value.forEach(item => {
-                if (item) fd.append(key, item);
-            });
-        }
+Object.entries(formData).forEach(([k, v]) => {
+    if (v === undefined || v === null) return;
+    if (Array.isArray(v)) {
+        v.forEach(item => fd.append(k, item));
     } else {
-        fd.append(key, value);
+        fd.append(k, v);
     }
 });
+
 
 // Add resume file if present
 if (resumeFile) {
@@ -465,7 +455,7 @@ if (resumeFile) {
                         </div>
                     )}
 
-{ <div>
+{/* { <div>
     <label htmlFor="genderIdentity" className="block font-medium">Gender Identity *</label>
     <select
         id="genderIdentity"
@@ -491,7 +481,7 @@ if (resumeFile) {
     )}
 
     {errors.genderIdentity && <div className="text-red-600 text-sm">{errors.genderIdentity}</div>}
-</div>}
+</div>} */}
 
 
                     <div>
@@ -712,7 +702,7 @@ if (resumeFile) {
                         {errors.resume && <div className="text-red-600 text-sm">{errors.resume}</div>}
                     </div>
 
-<div>
+{/* <div>
     <label htmlFor="foodAllergies" className="block font-medium">Food Allergies/Restrictions (Optional)</label>
     <select
         id="foodAllergies"
@@ -728,7 +718,7 @@ if (resumeFile) {
             <option key={allergy} value={allergy}>{allergy}</option>
         ))}
     </select>
-</div>
+</div> */}
 
 
                     <div>
