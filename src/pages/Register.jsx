@@ -254,6 +254,8 @@ export default function Register() {
 
     const url = "https://witcon.duckdns.org/backend-api/attendees/";
 
+    const fd = new FormData(); 
+
     // Prepare FormData
     Object.entries(formData).forEach(([k, v]) => {
     if (v === undefined || v === null) return;
