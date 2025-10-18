@@ -277,8 +277,10 @@ export default function Register() {
 
         if (!res.ok) {
             const data = await res.json().catch(() => ({}));
+            onsole.error("Backend error response:", data);
             setErrors(data);
         } else {
+
             const data = await res.json();
             console.log("Registration success:", data);
             setIsSubmitted(true); // only set this on successful submission
@@ -288,7 +290,6 @@ export default function Register() {
         setErrors({ submit: "Registration failed. Please try again." });
     }
 };
-
 
 
     if (isSubmitted) {
