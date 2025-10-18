@@ -16,7 +16,7 @@ export default function Register() {
         raceEthnicity: '',
         raceOther: '',
         levelOfStudy: '',
-        yearLevel: '',
+        // yearLevel: '',
         studyOther: '',
         fieldOfStudy: '',
         fieldOther: '',
@@ -221,7 +221,7 @@ export default function Register() {
         if (formData.genderIdentity.length === 0) newErrors.genderIdentity = 'Required';
         if (!formData.raceEthnicity) newErrors.raceEthnicity = 'Required';
         if (!formData.levelOfStudy) newErrors.levelOfStudy = 'Required';
-        if (formData.levelOfStudy === 'Undergraduate' && !formData.yearLevel) newErrors.yearLevel = 'Required';
+        // if (formData.levelOfStudy === 'Undergraduate' && !formData.yearLevel) newErrors.yearLevel = 'Required';
         if (!formData.fieldOfStudy) newErrors.fieldOfStudy = 'Required';
         if (!formData.school) newErrors.school = 'Required';
         if (formData.school === 'Florida International University' && !formData.pantherID) newErrors.pantherID = 'Required';
@@ -265,9 +265,9 @@ export default function Register() {
         }
     });
 
-    // if (resumeFile) {
-    //     fd.append("resume", resumeFile);
-    // }
+    if (resumeFile) {
+        fd.append("resume", resumeFile);
+    }
 
     try {
         const res = await fetch(url, {
@@ -521,7 +521,7 @@ export default function Register() {
                         {errors.levelOfStudy && <div className="text-red-600 text-sm">{errors.levelOfStudy}</div>}
                     </div>
 
-                    {formData.levelOfStudy === 'Undergraduate' && (
+                    {/*formData.levelOfStudy === 'Undergraduate' && (
                         <div>
                             <label htmlFor="yearLevel" className="block font-medium">Year Level *</label>
                             <select
@@ -538,7 +538,7 @@ export default function Register() {
                             </select>
                             {errors.yearLevel && <div className="text-red-600 text-sm">{errors.yearLevel}</div>}
                         </div>
-                    )}
+                    )*/}
 
                     {formData.levelOfStudy === 'Other' && (
                         <input
