@@ -261,12 +261,11 @@ export default function Register() {
     if (v === undefined || v === null) return;
     if (Array.isArray(v)) {
         // Convert array to JSON string before sending
-        fd.append(k, JSON.stringify(v));
+        v.forEach(item => fd.append(k, item));
     } else {
         fd.append(k, v);
     }
 });
-
 
     if (resumeFile) {
         fd.append("resume", resumeFile);
